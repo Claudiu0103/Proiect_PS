@@ -8,27 +8,12 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "comments")
-public class Comment {
+public class Comment extends Post{
 
     @Id
     @Column(name = "idComment")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComment;
-
-    @Column(name = "text")
-    private String text;
-
-    @Column(name = "date")
-    private String date;
-
-    @Column(name = "imageURL")
-    private String imageURL;
-
-    @Column(name = "nrOfLikes")
-    private Integer nrOfLikes;
-
-    @Column(name = "nrOfDislikes")
-    private Integer nrOfDislikes;
 
     @ManyToOne
     @JoinColumn(name = "idUser", nullable = false)
@@ -41,12 +26,8 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String text, String date, String imageURL, Integer nrOfLikes, Integer nrOfDislikes, User user,Bug bug) {
-        this.text = text;
-        this.date = date;
-        this.imageURL = imageURL;
-        this.nrOfLikes = nrOfLikes;
-        this.nrOfDislikes = nrOfDislikes;
+    public Comment(String text, String date, String imageURL, User user,Bug bug) {
+        super(text, imageURL, date);
         this.user = user;
         this.bug = bug;
     }

@@ -7,6 +7,7 @@ import backend.service.BugService;
 import backend.service.CommentService;
 import backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,15 +32,19 @@ public class CommentController {
     }
 
     @PostMapping("/addComment")
-    @ResponseBody
-    public Comment addComment(@RequestBody Comment comment) {
-        return this.commentService.insertComment(comment);
+    public ResponseEntity<Comment> addComment(@RequestParam Long bugId,
+                                              @RequestParam Long userId,
+                                              @RequestParam String text,
+                                              @RequestParam String imageURL,
+                                              @RequestParam String dateTime) {
+        Comment savedComment = commentService.insertComment(bugId, userId, text, imageURL, dateTime);
+        return ResponseEntity.ok(savedComment);
     }
 
     @PutMapping("/updateComment")
     @ResponseBody
     public Comment updateComment(@RequestBody Comment comment) {
-        return this.commentService.insertComment(comment);
+        return this.commentService.updateComment(comment);
     }
 
     @DeleteMapping("/deleteById")

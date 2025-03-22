@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -11,7 +14,7 @@ import lombok.Setter;
 public class User {
 
     @Id
-    @Column(name="idUser")
+    @Column(name="id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
 
@@ -29,6 +32,12 @@ public class User {
 
     @Column(name="role")
     private String role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Bug> bugs = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public User() {
     }

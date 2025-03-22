@@ -1,9 +1,11 @@
 package backend.repository;
 
-import backend.entity.Bug;
+import backend.entity.Vote;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
-public interface BugRepository extends CrudRepository<Bug, Long> {
+public interface IVoteRepository extends CrudRepository<Vote, Long> {
+
 }

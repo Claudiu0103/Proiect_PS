@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BugTagRepository extends CrudRepository<BugTag, Long> {
+public interface IBugTagRepository extends CrudRepository<BugTag, Long> {
     boolean existsByBugAndTag(Bug bug, Tag tag);
 
     List<Tag> findTagsByBug_IdBug(Long bugId);

@@ -2,8 +2,9 @@ package backend.service;
 
 
 import backend.entity.User;
-import backend.repository.UserRepository;
+import backend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 
     public List<User> retrieveUsers() {
         return (List<User>) this.userRepository.findAll();
@@ -26,10 +28,12 @@ public class UserService {
     }
 
     public User insertUser(User user) {
-        Optional<User> existingUser = this.userRepository.findById(user.getIdUser());
+        Optional<User> existingUser = this.userRepository.findByUsername(user.getUsername());
         if(existingUser.isPresent()){
             throw new IllegalStateException("Utilizatorul cu acest nume exista deja");
         }
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
 

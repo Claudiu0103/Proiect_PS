@@ -1,21 +1,22 @@
 package backend.config;
 
-import backend.entity.User;
+import backend.entity.Vote;
+import backend.entity.VoteType;
 import backend.repository.IUserRepository;
+import backend.repository.IVoteRepository;
 import backend.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class UserConfig {
-    @Bean
-    CommandLineRunner commandLineRunner(IUserRepository userRepository, UserService userService) {
-        return args -> {
-            /*userRepository.deleteAll();
-            User user = new User("clau03","12345",false,0.0,"USER");
-            userService.insertUser(user);*/
 
+@Configuration
+public class VoteConfig {
+    @Bean
+    CommandLineRunner commandLineRunner4(IVoteRepository voteRepository) {
+        return args -> {
+            /*Vote vote = new Vote(6L,8L,4L, VoteType.UPVOTE);
+            voteRepository.save(vote);*/
         };
     }
 }

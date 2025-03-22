@@ -1,22 +1,30 @@
 package backend.config;
 
-import backend.entity.Bug;
-import backend.entity.User;
-import backend.repository.BugRepository;
-import backend.repository.UserRepository;
+import backend.repository.IBugRepository;
+import backend.repository.IUserRepository;
+import backend.service.BugService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
 public class BugConfig {
     @Bean
-    CommandLineRunner commandLineRunner2(BugRepository bugRepository, UserRepository userRepository) {
+    CommandLineRunner commandLineRunner2(IBugRepository bugRepository, IUserRepository userRepository, BugService bugService) {
         return args -> {
-            /*User user = userRepository.findById(6L).orElse(null);
-            Bug bug1 = new Bug("Bad Remove", "Remove is not working properly","20.05.2025","Received","dfgdfgfdg",12,5,user);
-            bugRepository.save(bug1);*/
-
+            /*List<String> tagNames = List.of("UI", "Backend", "Critical");
+            bugService.addBugWithTags(
+                    "Login Button Not Working",
+                    "The login button does not respond when clicked",
+                    "22.03.2025",
+                    "sdfsdfsdf",
+                    "RECEIVED",
+                    6L,
+                    tagNames
+            );*/
+            /*bugRepository.deleteById(3L);*/
         };
     }
 }

@@ -1,10 +1,9 @@
 package backend.repository;
 
-import backend.entity.Comment;
+import backend.entity.Bug;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommentRepository extends CrudRepository<Comment, Long> {
-
+public interface IBugRepository extends CrudRepository<Bug, Long> {
 }
